@@ -8,9 +8,6 @@ namespace Q2Packer
     {
         private BinaryReader fileReader;
 
-        private const int pakHeader = ('K'  << 24) + ('C' << 16) + ('A' << 8) + 'P';
-        //private string colourMapLumpName = "pics/colormap.pcx";
-
         public PakExtractor(string filePath)
         {
             fileReader = new BinaryReader(new FileStream(filePath, FileMode.Open));
@@ -20,7 +17,7 @@ namespace Q2Packer
         {
             var id = fileReader.ReadInt32();
 
-            if (id != pakHeader)
+            if (id != PakHeader.FileHeader)
                 throw new Exception("Invalid Pak file! Could not match pak header");
 
             var lumpCollectionOffset = fileReader.ReadInt32();

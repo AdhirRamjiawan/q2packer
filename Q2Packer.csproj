@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Debugging.cs" />
     <Compile Include="PakExtractor.cs" />
+    <Compile Include="PakFileTable.cs" />
+    <Compile Include="PakHeader.cs" />
+    <Compile Include="PakLump.cs" />
+    <Compile Include="PakPacker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
