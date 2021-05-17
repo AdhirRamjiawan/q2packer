@@ -57,7 +57,7 @@ namespace Q2Packer
 
         private string ReadString(int length)
         {
-            var data = Encoding.UTF8.GetString(fileReader.ReadBytes(length));
+            var data = Encoding.ASCII.GetString(fileReader.ReadBytes(length));
             data = data.Substring(0, data.IndexOf('\0'));
             return data;
         }

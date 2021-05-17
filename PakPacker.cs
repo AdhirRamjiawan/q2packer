@@ -68,7 +68,7 @@ namespace Q2Packer
                             throw new Exception("Lump name is too long. Halting...");
                         
                         byte[] bytes = File.ReadAllBytes(child);
-                        data.Add(new PakLump() { Name =  lumpName + '\0', Data = bytes, Size = bytes.Length });
+                        data.Add(new PakLump() { Name =  lumpName, Data = bytes, Size = bytes.Length });
                     }
                 }
             }
