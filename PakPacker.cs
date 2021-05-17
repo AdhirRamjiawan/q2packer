@@ -52,24 +52,31 @@ namespace Q2Packer
 
         private void BuildLumpCollection(string path)
         {
-            foreach (string entry in Directory.GetFileSystemEntries(path))
+            var entries = Directory.GetFileSystemEntries(path);
+
+            foreach (string entry in entries)
             {
-                if (Directory.GetDirectories(entry).Length > 0)
+                try
                 {
-                    BuildLumpCollection(entry);
-                }
-                else
-                {
-                    foreach (string child in Directory.GetFileSystemEntries(entry))
+                    if (File.GetAttributes(entry).HasFlag(FileAttributes.Directory))
                     {
-                        string lumpName = child.Replace(inputDirectory, "");
+                        BuildLumpCollection(entry);
+                    }
+                    else
+                    {
+                        string lumpName = entry.Replace(inputDirectory, "");
 
                         if (lumpName.Length > 55)
                             throw new Exception("Lump name is too long. Halting...");
-                        
-                        byte[] bytes = File.ReadAllBytes(child);
-                        data.Add(new PakLump() { Name =  lumpName, Data = bytes, Size = bytes.Length });
+
+                        byte[] bytes = File.ReadAllBytes(entry);
+                        data.Add(new PakLump() { Name = lumpName, Data = bytes, Size = bytes.Length });
                     }
+                }
+                catch
+                {
+                    Console.WriteLine($"Failed at checking sub-directory length for path {entry}");
+                    throw;
                 }
             }
         }
