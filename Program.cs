@@ -20,14 +20,14 @@ namespace Q2Packer
                     }
                 }
 
-                if (args.Length != 3)
-                {
-                    PrintUsage();
-                    return;
-                }
-
                 if (args[0].ToLowerInvariant() == "pack")
                 {
+                    if (args.Length != 3)
+                    {
+                        PrintUsage();
+                        return;
+                    }
+
                     if (!Directory.Exists(args[1]))
                     {
                         Console.WriteLine("Error: Path to pack not found");
@@ -41,6 +41,12 @@ namespace Q2Packer
                 }
                 else if (args[0].ToLowerInvariant() == "unpack")
                 {
+                    if (args.Length != 3)
+                    {
+                        PrintUsage();
+                        return;
+                    }
+
                     if (!File.Exists(args[1]))
                     {
                         Console.WriteLine("Error: Path to pak file not found");
@@ -56,6 +62,19 @@ namespace Q2Packer
                     using (PakExtractor extractor = new PakExtractor(args[1]))
                     {
                         extractor.Extract(args[2]);
+                    }
+                }
+                else if (args[0].ToLowerInvariant() == "list")
+                {
+                    if (!File.Exists(args[1]))
+                    {
+                        Console.WriteLine("Error: Path to pak file not found");
+                        return;
+                    }
+
+                    using (PakLumpLister lumpLister = new PakLumpLister(args[1]))
+                    {
+                        lumpLister.List();
                     }
                 }
             }

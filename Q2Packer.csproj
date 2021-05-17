@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Debugging.cs" />
     <Compile Include="PakExtractor.cs" />
+    <Compile Include="PakLumpLister.cs" />
     <Compile Include="PakFileTable.cs" />
     <Compile Include="PakHeader.cs" />
     <Compile Include="PakLump.cs" />

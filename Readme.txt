@@ -16,3 +16,4 @@ TODO:
 	- [As option] When extracting the pak file create an output root folder with the same name as the input pak file.
 	- [As option] generate a report of extraction/packing in terms of number of lumps, invalids, etc...
 	- [As option] output all file entries in pak
+	- Refactor: each action should be abstracted to a common interface
