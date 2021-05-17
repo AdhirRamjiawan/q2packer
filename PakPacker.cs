@@ -65,6 +65,8 @@ namespace Q2Packer
                     else
                     {
                         string lumpName = entry.Replace(inputDirectory, "");
+                        lumpName = lumpName.Replace("\\", "/");
+                        lumpName = lumpName.Substring(1);
 
                         if (lumpName.Length > 55)
                             throw new Exception("Lump name is too long. Halting...");
